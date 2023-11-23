@@ -81,7 +81,7 @@ func main() {
 	//Run Server
 
 	go func() {
-		if err := router.Run("8080"); err != nil {
+		if err := router.Run(":8080"); err != nil {
 			fmt.Println("Error Starting server", err)
 		}
 	}()
@@ -115,20 +115,20 @@ func transformData(input *InputData) *OutputData {
 		Attributes:      input.Attributes,
 		UserTraits:      input.UserTraits,
 	}
-	return &output
+	return output
 }
 
 func sendToWebhook(output *OutputData) {
 
 	webhookUrl := "https://webhook.site/f90c73e4-3866-4637-93e8-81e9cb2beb36"
 
-	payLoad, err := json.Marshal(output)
+	payload, err := json.Marshal(output)
 	if err != nil {
 		fmt.Println("Error Marshalling  output", err)
 		return
 	}
 
-	response, err := http.Post(webhookUrl+"application/json", bytes.NewBuffer(payLoad))
+	response, err := http.Post(webhookUrl , "application/json", bytes.NewBuffer(payload))
 	if err != nil {
 		fmt.Println("Error sending data to webhook", err)
 		return
