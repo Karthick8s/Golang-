@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Input structure for incoming requests
+// Input structure 
 type InputData struct {
 	Event           string               `json:"ev"`
 	EventType       string               `json:"et"`
@@ -25,13 +25,11 @@ type InputData struct {
 	UserTraits      map[string]UserTrait `json:"traits"`
 }
 
-// Attribute structure for attributes in InputData
 type Attribute struct {
 	Value string `json:"value"`
 	Type  string `json:"type"`
 }
 
-// UserTrait structure for user traits in InputData
 type UserTrait struct {
 	Value string `json:"value"`
 	Type  string `json:"type"`
